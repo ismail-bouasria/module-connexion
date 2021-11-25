@@ -1,118 +1,128 @@
 <?php
 session_start();
+// connexion à la base de données moduleconnexion
+$bdd = mysqli_connect('localhost','root','','moduleconnexion');
+// Requête pour se connecter
+$req = mysqli_query($bdd,"SELECT * FROM utilisateurs WHERE login='admin'");
+$result= mysqli_fetch_all($req,MYSQLI_ASSOC); // recuperer les données de l'admin.
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF8">
-
-    <Title>Accueil</Title>
-    <link rel="stylesheet" href=".//asset/css/module-connexion.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./asset/css/module-connexion.css">
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <title>Accueil </title>
 </head>
-
 <body>
-   
-    <Header class="Icolor">
-        <section class="center">
-            <a href="index.php"><img src=".//asset/images/Islogo.png" alt="Logo La Plateforme "></a>
+    <header>
+      <section  >
+          <img class="headsize"src="./asset/images/Nulogo.jpg" alt="NintendoUnivers.logo">
+      </section>
+      <!-- MENU -->
+      <nav>
+        <section class="menuflex">
+            <section class="menucard"><a href="index.php">Accueil</a></section> 
+            <!-- PHP  CONDITIONS DE CONNEXIONS -->
+            <?php
+                       if (isset($_SESSION['username'])) {
+                        if (isset($_POST['deconect'])) {
+                            session_destroy();
+                            header("location: index.php");
+                            }       ?>
+                    <section class="menucard"> <form class="deco" action="" method="post">
+                            <input  type="submit" name="deconect" value="Déconnexion" />
+                                      </form>
+                    </section>
+                    <?php }
+                         else {
+                    ?><section class="menucard">
+                        <a href="./php/inscription.php">Inscription</a>
+                    </section> 
+            <section class="menucard">
+                <a href="./php/connexion.php">Connexion</a>
+            </section>
+            <?php } ?>
+            <?php 
+            if (isset($_SESSION['username'])) {?>
+                  <section class="menucard"><a href="./php/profil.php">Profil</a></section>
+      <?php }
+            if (isset($_SESSION['username'])) {
+                // je vérifie si le pseudo est identique à admin.
+                if ($_SESSION["username"] == $result[0]['login']) {?>
+            <section class="menucard"><a href="./php/admin.php">Admin</a></section>
+            <?php } 
+            }
+            ?>
             
+        </section>
+      </nav>
+    </header>
+    <main>
+<section class="container"> 
+    <section class="card1">
+      <div><h1>DERNIERS ARTICLES</h1></div>
+      <section class="flex">
+          <div class="articlecard1"> 
+          <img class="artimg" src="./asset/images/newsimage1.png" alt="" srcset="">
+          </div>
+          <div class="articlecard2"> 
+            <h3>Evenement – Le Tokyo Game Show 2020 numérique se déroulera du 23 au 27 septembre</h3>
+            <p> COVID-19 – C’est au tour du Tokyo Game Show d’annoncer son annulation à cause de la pandémie de Covid-19. Le monde de l’événementiel s’organise pour poursuivre son activité sous la forme d’événements numériques.   </p>
+          </div>
+      </section>
+      <section class="flex">
+          <div class="articlecard1"> 
+          <img class="artimg" src="./asset/images/newsimage2.png" alt="" srcset="">
+          </div>
+          <div class="articlecard2"> 
+               <h3>Pokemon Presents – Le MOBA Pokémon Unite se dévoile ! </h3>
+                <p>POKEMON – Un premier Pokémon Presents a été l’occasion pour les joueurs de découvrir plusieurs nouveaux projets de The Pokemon Company. Une nouvelle diffusion a hier présenté Pokémon Unite.   Quelle surprise pour les joueurs ! </p>
+            </div>
+      </section>
+      <section class="flex">
+          <div class="articlecard1"> 
+<img class="artimg" src="./asset/images/newsimage3.png" alt="" srcset="">
+          </div>
+          <div class="articlecard2"> 
+             <h3>Tetris99 – Le 14eme Grand Prix célèbre la sortie de Xenoblade Chronicles Definitive Edition ! </h3>
+              <p>TETRIS® 99 – Le Tetris Battle Royal exclusif aux adhérents du service Nintendo Switch Online accueillera prochainement un nouvel événement ! Xenoblade Chronicles sera à l’honneur.   TETRIS® 99 a depuis sa sortie l’habitude de proposer des événements en collaboration avec d’autres jeux. </p>
+          </div>
+      </section>
+    </section>
+    <section class="card2">
+        <div>
+            <h1>DERNIERS TEST</h1>
+        </div>
+        <div class="testcard">
+          <img class="artimg" src="./asset/images/test1.jpg" alt="test1">
+          <h3>  Isolarmure, première partie du DLC de Pokémon Épée-Bouclier ! </h3>
+        </div>
+        <div class="testcard">
+        <img class="artimg" src="./asset/images/test2.jpg" alt="test2">
+        <h3> 51 Worldwide Games, le coffret de jeux à emporter ! </h3>
+        </div>
+        <div class="testcard">
+        <img class="artimg" src="./asset/images/test3.jpg" alt="test3">
+        <h3> 911 Operator Deluxe Edition – Entrez dans le quotidien des opérateurs d’appel d’urgence ! </h3>
+        </div>
+    </section>
 </section>
 
-         <!-- MENU -->
-        <div class="dimtext">
-            <nav>
-                <ul>
-                    <li><a href="index.php">Accueil</a></li>
-                    <?php
-                       if (isset($_SESSION['username'])) {
-                          
-                          echo'<li>
-                          <form action="index.php" method="post">
-                          <input type="submit" name="deconect" value="Déconnexion"/>
-                          </form>
-                          </li>
-                          <li><a href="./php/profil.php">Profil</a></li>';
-                         } 
-                     else {
-                        echo'<li><a href="./php/inscription.php">Inscription</a></li>
-                        <li><a href="./php/connexion.php">Connexion</a></li>';
-                        }
-                    if (isset($_POST['deconect'])) {
-                            session_destroy();
-                            header("location:index.php");
-                            }
-                    
-                    
-                    
-                    <li><a href=".//php/profil.php">Admin</a></li>
-                    ?>
-                </ul>
-            </nav>
-        </div>
-    </Header>
-
-    
-    <!-- FORMULAIRE -->
-
-   
-    
- 
-    <!-- TEXTES -->
-    <main style="background-color: #ffffff;">
-        <div class="divflex">
-            <div class="colortext2" ; style="background-color:#ffffff;">
-                <br>
-
-                <h1>Une autre question ?</h1>
-                <ul>Nous sommes aussi joignables :</ul>
-                <br>
-                <ul>– Email &nbsp;<a href="mailto:contact@laplateforme.io">contact@laplateforme.io</a></ul>
-                <ul>– Téléphone: 04.84.89.43.69 du Lundi-Vendredi de 9h à 17h</ul>
-                <ul>– Réseaux sociaux</ul>
-
-                <ul><a href="https://www.facebook.com/LaPlateformeIO" target="_blank"><img src="fb.png" alt="Facebook"></a>&nbsp;
-                    <a href="https://www.linkedin.com/company/laplateformeio" target="_blank"><img src="linkedin.png" alt="Linkdedin"></a>&nbsp;
-                    <a href="https://twitter.com/LaPlateformeIO" target="_blank"><img src="twitter.png" alt="Twitter"></a>&nbsp;
-                    <a href="https://www.instagram.com/LaPlateformeIO" target="_blank"><img src="insta.png" alt="Instagram"></a>
-                </ul>
-                <br>
-            </div>
-        </div>
     </main>
-    <div class="divflex" ; style="background-color:#ffffff;">
-        <div class="bigtext">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <h1><a href="https://laplateforme.io/laplateforme_brochure.pdf" target="_blank">
-                    Télécharger notre brochure !</a> &nbsp;
-        </div>
-        <div><a href="https://laplateforme.io/laplateforme_brochure.pdf" target="_blank"><img src="brochure.jpg" alt="brochure"></a></div>
-    </div>
-    <br>
-    <!-- CARTES -->
-    <div class="divflex">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2903.4558253108085!2d5.367935414649636!3d43.304716482914195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9c13ddc0211b9%3A0xd1642ae4b32c4bc4!2sEcole%20La%20Plateforme%2C%20le%20Campus%20M%C3%A9diterran%C3%A9en%20du%20Num%C3%A9rique!5e0!3m2!1sfr!2sfr!4v1633637418496!5m2!1sfr!2sfr" width="1000" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-    <br>
-    <!-- PIED DE PAGE -->
-    <footer style="background-color: rgb(34, 34, 34);">
-        <br>
-        <div class="flexcolortext">
-            <div>Association Loi 1901 - SIRET : 84160956300025</div>
-            <div>Tel : 04.84.89.43.69 - contact@laplateforme.io
-            </div>
-            <div>© La Plateforme_. Tous droits réservés.</div>
-        </div>
+    <footer>
+ <section class="footcard"> 
+<h1>SITE</h1>
+ </section>
+ <section class="footcard"> 
+ <h1>CATÉGORIES</h1>    
+ </section>
+ <section class="footcard"> 
+ <h1>RÉSEAUX SOCIAUX</h1>
+ </section> 
     </footer>
-
 </body>
-
 </html>

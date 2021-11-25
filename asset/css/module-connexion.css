@@ -1,144 +1,174 @@
 /* MODULE-CONNEXION.CSS */
 body{
-padding: 0; margin: 0;
-background-color: #31424A;
+  margin: 0%;
+  padding: 0%;
+  background-color: #2F3035 ;
+  font-family: "Lato";
 }
-/* FLEX BANK  */
-.center{
-    display: flex ;
-    justify-content: center ;
+/* BANK OF FLEX */
+.flex{
+  display: flex;
 }
-
-    /* Header */
-
-.Ialign{
-    display: flex; padding: 5px;
+/* HEADER */
+.headsize{
+  width: 100%;
 }
-.Icolor{
-    background-color: #E8E8E8;
+/* Menu */
+.menuflex{
+  display: flex;
+  justify-content: space-evenly;
+  color: whitesmoke;
 }
-/* Menu pas déroulant */
-/*Reset CSS*/
-*{
-    margin: 0px;
-    padding: 0px;
-    font-family:"Lato"
-}
-nav ul{
-    list-style-type:none;
-}
-nav li{
-    float: left;
-    width: 20%;
-    text-align: center;
-}
-nav ul ::after{
-    content:"";
-    display:table;
-    clear:both;
-}
-nav{
-    width: 100%;
-    height: 40px;
-    margin:0 auto;
-    background-color: #00939B;
-    position: sticky;
-    top:0px;
-}
-nav a{
-    display: block;
-    text-decoration: none;
-    color: #212C31;
-    border-bottom: #31424A;
-    padding: 10px 0px
+.menucard{
+  background-color: #2F3035;
+  width: 25%;
+  text-align: center;
+  color:whitesmoke;
+  font-weight: bold;
 
 }
-nav a:hover{
-    color: #E8E8E8;
-    border-bottom: 2px #31424A;
+
+.menucard a{
+  text-decoration: none;
+  text-decoration-color: none;
+  color: whitesmoke;
 }
-.dimtext{
-    font-size: 18px;
-    font-weight: bold;
+.menucard:hover a{
+  color: #2F3035;
+}
+.menucard:hover{
+  background-color: whitesmoke;
+ 
+}
+.menucard input[type=submit]{
+  background-color: #2F3035;
+  border: none;
+  color: white;
+  font-family: "Lato";
+  font-weight: bold;
+  font-size: medium;
+}
+.menucard:hover input[type=submit]{
+  color: #2F3035;
+  background-color:whitesmoke ;
+}
+input{
+cursor: pointer;
+}
+
+/* MAIN */
+main{
+  background-color: #F7F7F7;
+}
+.container{
+  display: flex;
+  background-color: #F7F7F7;
+}
+.card1{
+  width: 70%;
+ text-align: center;
+}
+.card2{
+  width: 30%;
+  text-align: center;
+}
+.articlecard1{
+  width: 30%;
+  margin: 1%;
+  display: flex;
+  align-items: center;
+}
+.articlecard2{
+  width: 70%;
+ 
+  margin: 1%;
+}
+.artimg{
+  width: 100%;
+  border-radius:3%;}
+
+.testcard{
+  margin: 2%;
+}
+
+/* FOOTER */
+
+footer{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #222126;
+  height:300px;
+}
+.footcard{
+  width: 33%;
+text-align: center;
+  height: 300px;
+  color: whitesmoke;
 }
 /* FORMULAIRE */
-.formcust {
-    margin: 0 auto;
-    width: 400px;
-    padding: 1em;
-    border: 1px solid #CCC;
-    border-radius: 1em;
-    background-color: #E8E8E8;
-  }
-  form div + div {
-    margin-top: 1em;
-  }
-   label {
-    display: inline-block;
-    width: 90px;
-    text-align: right;
-  }
-   input, textarea {
-    font: 1em sans-serif;
-    width: 300px;
-    box-sizing: border-box;
-    border: 1px solid #999;
-  }
-  input:focus, textarea:focus {
-    border-color: #000;
-  }
-  textarea {
-    vertical-align: top;
-    height: 5em;
-  }
-  .button { 
-    padding-left: 90px;
-  }
-  button {
-    margin-left: .5em;
 
-    background: #00939B;
-    
-    color: white;
-    
-    border-style: outset;
-    
-    border-color: #949697;
-    
-    height: 50px;
-    
-    width: 100px;
-    
-    font: bold 15px arial, sans-serif;
-    
-    text-shadow:none;
-    border-radius: 90px;
-  }
-.colortext{
-font-family:"Lato";
-font-weight: bold;
-font-size: 35px; color: #E8E8E8;
-  }
-  .colortext2 {
-    font-family:"Lato";font-weight: bold;font-size: 20px;
-  }
-  .dimtext2{
-      margin: 5%;
-  }
-  .divflex{
-      display: flex;justify-content:center
-
-  }
-.divflex2{
-    display: flex;
-}
-.bigtext {
-    size: 20px; font-weight: bold;
-}
-.flexcolortext{
-  font-family:"Lato";width: fit-content;height: fit-content ;
-  font-size: 15px; color: #E8E8E8;
+.containconnect{
+  background-color:#F7F7F7;
+  width: 100%;
+  height: 500px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+}
+.cardconnect{
+background-color:rgb(151, 135, 135);
+width: 30%;
+height: 250px;
+display: flex;
+text-align: center;
+justify-content: center;
+flex-wrap: wrap;
+border-radius: 3%;
+box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
+border: gray solid 1px;
+}
+.padding{
+  padding: 3%;
+}
+.cardconnect2{
+  background-color:rgb(151, 135, 135);
+  width: 30%;
+  height: 450px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 3%;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
+  border: gray solid 1px;
+  }
+
+  /* ADMIN */
   
+  .containtable{
+    background-color:#F7F7F7;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  }
+  table{
+    border-collapse: collapse;
+    width: 90%;
+    text-align: center;
+  }
+  th{
+    background-color: #2F3035;
+    color: whitesmoke;
+    border: 1px solid black;
+
+  }
+  td{
+    border: 1px solid black;
+  }
+.textcust{
+  text-align: center;
+  margin: 10%;
 }
